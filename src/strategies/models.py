@@ -69,10 +69,34 @@ class Portfolio:
     positions: dict[str, Position] = field(default_factory=dict)
 
     @property
-    def total_equity(self) -> float:
+    def total_value(self) -> float:
         return self.cash + sum(
             p.value + p.unrealized_pnl for p in self.positions.values()
         )
 
     def get_position(self, symbol: str) -> Optional[Position]:
         return self.positions.get(symbol)
+
+    def update_position(self, order: Order, fill_price: float, commission: float) -> None:
+        """Update portfolio state after an order fill."""
+        cost = order.size * fill_price
+        
+        if order.side == OrderSide.BUY:
+            self.cash -= (cost + commission)
+            if order.symbol in self.positions:
+                # Average up position
+                pos = self.positions[order.symbol]
+                new_size = pos.size + order.size
+                new_entry = ((pos.entry_price * pos.size) + cost) / new_size
+                self.positions[order.symbol] = Position(order.symbol, pos.side, new_entry, new_size)
+            else:
+                self.positions[order.symbol] = Position(order.symbol, order.side, fill_price, order.size)
+        else:
+            # Sell logic
+            self.cash += (cost - commission)
+            if order.symbol in self.positions:
+                pos = self.positions[order.symbol]
+                if order.size >= pos.size:
+                    self.positions.pop(order.symbol, None)
+                else:
+                    self.positions[order.symbol] = Position(order.symbol, pos.side, pos.entry_price, pos.size - order.size)
