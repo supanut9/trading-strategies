@@ -22,10 +22,10 @@ class RSI:
         """Returns the current RSI value (0-100), or None if not ready."""
         if self._avg_gain is None or self._avg_loss is None:
             return None
-        
+
         if self._avg_loss == 0:
             return 100.0
-        
+
         rs = self._avg_gain / self._avg_loss
         return 100.0 - (100.0 / (1.0 + rs))
 

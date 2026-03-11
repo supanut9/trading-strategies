@@ -8,7 +8,7 @@ from ..models import Candle, Order, OrderSide, Portfolio
 class RSIStrategy(AbstractStrategy):
     """
     A mean-reversion strategy based on the RSI indicator.
-    
+
     Buys when RSI is oversold (< 30).
     Sells when RSI is overbought (> 70).
     """
@@ -26,7 +26,7 @@ class RSIStrategy(AbstractStrategy):
         self._oversold = oversold
         self._overbought = overbought
         self._position_size = position_size
-        
+
         self.rsi = RSI(period=self._period)
 
     @property
@@ -43,7 +43,7 @@ class RSIStrategy(AbstractStrategy):
             return orders
 
         current_rsi = self.rsi.update(candle.close)
-        
+
         if not self.rsi.is_ready or current_rsi is None:
             return orders
 

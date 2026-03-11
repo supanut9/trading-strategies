@@ -7,7 +7,7 @@ from ..models import Candle, Order, OrderSide, Portfolio
 class BreakoutStrategy(AbstractStrategy):
     """
     A simple breakout strategy.
-    
+
     Buys when the price breaks above the N-period high.
     Sells when the price breaks below the N-period low.
     """
@@ -21,7 +21,7 @@ class BreakoutStrategy(AbstractStrategy):
         self._symbol = symbol
         self._period = period
         self._position_size = position_size
-        
+
         self._highs: List[float] = []
         self._lows: List[float] = []
 
