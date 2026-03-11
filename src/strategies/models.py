@@ -67,6 +67,7 @@ class Portfolio:
     initial_capital: float
     cash: float
     positions: dict[str, Position] = field(default_factory=dict)
+    history: list[PortfolioSnapshot] = field(default_factory=list)
 
     @property
     def total_value(self) -> float:
@@ -76,6 +77,18 @@ class Portfolio:
 
     def get_position(self, symbol: str) -> Optional[Position]:
         return self.positions.get(symbol)
+
+    def snapshot(self, timestamp: datetime) -> None:
+        """Capture current state for history."""
+        positions_value = sum(p.value + p.unrealized_pnl for p in self.positions.values())
+        self.history.append(
+            PortfolioSnapshot(
+                timestamp=timestamp,
+                equity=self.total_value,
+                cash=self.cash,
+                positions_value=positions_value,
+            )
+        )
 
     def update_position(self, order: Order, fill_price: float, commission: float) -> None:
         """Update portfolio state after an order fill."""
