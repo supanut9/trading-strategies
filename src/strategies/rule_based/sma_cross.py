@@ -8,7 +8,7 @@ from ..models import Candle, Order, OrderSide, Portfolio
 class SmaCrossStrategy(AbstractStrategy):
     """
     A classic trend-following strategy.
-    
+
     Buys when the fast SMA crosses ABOVE the slow SMA.
     Sells when the fast SMA crosses BELOW the slow SMA.
     """
@@ -24,10 +24,10 @@ class SmaCrossStrategy(AbstractStrategy):
         self._fast_period = fast_period
         self._slow_period = slow_period
         self._position_size = position_size
-        
+
         self.fast_sma = SimpleMovingAverage(period=self._fast_period)
         self.slow_sma = SimpleMovingAverage(period=self._slow_period)
-        
+
         self._prev_fast: float | None = None
         self._prev_slow: float | None = None
 
@@ -60,8 +60,13 @@ class SmaCrossStrategy(AbstractStrategy):
         # Need previous values to detect a CROSSOVER (not just "is greater than")
         prev_fast = self._prev_fast
         prev_slow = self._prev_slow
-        
-        if prev_fast is not None and prev_slow is not None and current_fast is not None and current_slow is not None:
+
+        if (
+            prev_fast is not None
+            and prev_slow is not None
+            and current_fast is not None
+            and current_slow is not None
+        ):
             position = portfolio.get_position(self._symbol)
 
             # Golden Cross: Fast crosses ABOVE Slow -> BUY
@@ -85,7 +90,7 @@ class SmaCrossStrategy(AbstractStrategy):
                         self._create_market_order(
                             symbol=candle.symbol,
                             side=OrderSide.SELL,
-                            size=self._position_size, # For now just selling identical size
+                            size=self._position_size,  # For now just selling identical size
                         )
                     )
 

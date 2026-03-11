@@ -67,10 +67,12 @@ class Portfolio:
     initial_capital: float
     cash: float
     positions: dict[str, Position] = field(default_factory=dict)
-    
+
     @property
     def total_equity(self) -> float:
-        return self.cash + sum(p.value + p.unrealized_pnl for p in self.positions.values())
+        return self.cash + sum(
+            p.value + p.unrealized_pnl for p in self.positions.values()
+        )
 
     def get_position(self, symbol: str) -> Optional[Position]:
         return self.positions.get(symbol)

@@ -1,11 +1,10 @@
-
 class SimpleMovingAverage:
     """
     A lightweight, iterative Simple Moving Average (SMA) indicator.
-    Calculates efficiently as new candles stream in (O(1) time complexity) 
+    Calculates efficiently as new candles stream in (O(1) time complexity)
     instead of recalculating across the whole history.
     """
-    
+
     def __init__(self, period: int):
         if period < 1:
             raise ValueError("Period must be at least 1")
@@ -34,5 +33,5 @@ class SimpleMovingAverage:
             # Remove the oldest element
             oldest = self._window.pop(0)
             self._sum -= oldest
-            
+
         return self.value

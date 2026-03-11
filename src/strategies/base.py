@@ -27,7 +27,7 @@ class AbstractStrategy(ABC):
     def on_candle(self, candle: Candle, portfolio: Portfolio) -> List[Order]:
         """
         The core engine loop. Called for every new candle.
-        
+
         Args:
             candle: The newest market candle.
             portfolio: The current state of positions and cash.
