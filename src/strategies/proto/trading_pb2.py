@@ -4,38 +4,37 @@
 # source: trading.proto
 # Protobuf Python Version: 6.31.1
 """Generated protocol buffer code."""
+
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
-    _runtime_version.Domain.PUBLIC,
-    6,
-    31,
-    1,
-    '',
-    'trading.proto'
+    _runtime_version.Domain.PUBLIC, 6, 31, 1, "", "trading.proto"
 )
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
 
-
-
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rtrading.proto\x12\x07trading\"\x8d\x01\n\rCandleRequest\x12\x0e\n\x06symbol\x18\x01 \x01(\t\x12\x11\n\ttimeframe\x18\x02 \x01(\t\x12\x0c\n\x04open\x18\x03 \x01(\x01\x12\x0c\n\x04high\x18\x04 \x01(\x01\x12\x0b\n\x03low\x18\x05 \x01(\x01\x12\r\n\x05\x63lose\x18\x06 \x01(\x01\x12\x0e\n\x06volume\x18\x07 \x01(\x01\x12\x11\n\ttimestamp\x18\x08 \x01(\t\"<\n\x0eSignalResponse\x12\x0e\n\x06symbol\x18\x01 \x01(\t\x12\x0c\n\x04side\x18\x02 \x01(\t\x12\x0c\n\x04size\x18\x03 \x01(\x01\x32O\n\x0fStrategyService\x12<\n\tGetSignal\x12\x16.trading.CandleRequest\x1a\x17.trading.SignalResponseB/Z-github.com/supanut9/trading-bot/proto/tradingb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\rtrading.proto\x12\x07trading"\x8d\x01\n\rCandleRequest\x12\x0e\n\x06symbol\x18\x01 \x01(\t\x12\x11\n\ttimeframe\x18\x02 \x01(\t\x12\x0c\n\x04open\x18\x03 \x01(\x01\x12\x0c\n\x04high\x18\x04 \x01(\x01\x12\x0b\n\x03low\x18\x05 \x01(\x01\x12\r\n\x05\x63lose\x18\x06 \x01(\x01\x12\x0e\n\x06volume\x18\x07 \x01(\x01\x12\x11\n\ttimestamp\x18\x08 \x01(\t"<\n\x0eSignalResponse\x12\x0e\n\x06symbol\x18\x01 \x01(\t\x12\x0c\n\x04side\x18\x02 \x01(\t\x12\x0c\n\x04size\x18\x03 \x01(\x01\x32O\n\x0fStrategyService\x12<\n\tGetSignal\x12\x16.trading.CandleRequest\x1a\x17.trading.SignalResponseB/Z-github.com/supanut9/trading-bot/proto/tradingb\x06proto3'
+)
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
-_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'trading_pb2', _globals)
+_builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "trading_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  _globals['DESCRIPTOR']._loaded_options = None
-  _globals['DESCRIPTOR']._serialized_options = b'Z-github.com/supanut9/trading-bot/proto/trading'
-  _globals['_CANDLEREQUEST']._serialized_start=27
-  _globals['_CANDLEREQUEST']._serialized_end=168
-  _globals['_SIGNALRESPONSE']._serialized_start=170
-  _globals['_SIGNALRESPONSE']._serialized_end=230
-  _globals['_STRATEGYSERVICE']._serialized_start=232
-  _globals['_STRATEGYSERVICE']._serialized_end=311
+    _globals["DESCRIPTOR"]._loaded_options = None
+    _globals[
+        "DESCRIPTOR"
+    ]._serialized_options = b"Z-github.com/supanut9/trading-bot/proto/trading"
+    _globals["_CANDLEREQUEST"]._serialized_start = 27
+    _globals["_CANDLEREQUEST"]._serialized_end = 168
+    _globals["_SIGNALRESPONSE"]._serialized_start = 170
+    _globals["_SIGNALRESPONSE"]._serialized_end = 230
+    _globals["_STRATEGYSERVICE"]._serialized_start = 232
+    _globals["_STRATEGYSERVICE"]._serialized_end = 311
 # @@protoc_insertion_point(module_scope)
