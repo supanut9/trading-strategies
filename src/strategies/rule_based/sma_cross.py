@@ -78,6 +78,7 @@ class SmaCrossStrategy(AbstractStrategy):
                             symbol=candle.symbol,
                             side=OrderSide.BUY,
                             size=self._position_size,
+                            timestamp=candle.timestamp,
                         )
                     )
 
@@ -91,6 +92,7 @@ class SmaCrossStrategy(AbstractStrategy):
                             symbol=candle.symbol,
                             side=OrderSide.SELL,
                             size=self._position_size,  # For now just selling identical size
+                            timestamp=candle.timestamp,
                         )
                     )
 

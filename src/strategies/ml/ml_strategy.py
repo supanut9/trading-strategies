@@ -100,14 +100,14 @@ class MLStrategy(AbstractStrategy):
             if not position or position.side != OrderSide.BUY:
                 orders.append(
                     self._create_market_order(
-                        self._symbol, OrderSide.BUY, self._position_size
+                        self._symbol, OrderSide.BUY, self._position_size, candle.timestamp
                     )
                 )
         else:  # Predict Down -> Exit
             if position and position.side == OrderSide.BUY:
                 orders.append(
                     self._create_market_order(
-                        self._symbol, OrderSide.SELL, self._position_size
+                        self._symbol, OrderSide.SELL, self._position_size, candle.timestamp
                     )
                 )
 

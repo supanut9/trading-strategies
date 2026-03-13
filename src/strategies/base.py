@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from datetime import datetime
 from typing import List
 
 from .models import Candle, Order, OrderSide, OrderType, Portfolio
@@ -45,16 +46,24 @@ class AbstractStrategy(ABC):
         pass
 
     # Helper methods for creating orders easily
-    def _create_market_order(self, symbol: str, side: OrderSide, size: float) -> Order:
+    def _create_market_order(
+        self, symbol: str, side: OrderSide, size: float, timestamp: datetime = None
+    ) -> Order:
         return Order(
             symbol=symbol,
             side=side,
             order_type=OrderType.MARKET,
             size=size,
+            timestamp=timestamp,
         )
 
     def _create_limit_order(
-        self, symbol: str, side: OrderSide, size: float, price: float
+        self,
+        symbol: str,
+        side: OrderSide,
+        size: float,
+        price: float,
+        timestamp: datetime = None,
     ) -> Order:
         return Order(
             symbol=symbol,
@@ -62,4 +71,5 @@ class AbstractStrategy(ABC):
             order_type=OrderType.LIMIT,
             size=size,
             price=price,
+            timestamp=timestamp,
         )

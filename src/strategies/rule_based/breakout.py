@@ -59,6 +59,7 @@ class BreakoutStrategy(AbstractStrategy):
                         symbol=candle.symbol,
                         side=OrderSide.BUY,
                         size=self._position_size,
+                        timestamp=candle.timestamp,
                     )
                 )
 
@@ -70,6 +71,7 @@ class BreakoutStrategy(AbstractStrategy):
                         symbol=candle.symbol,
                         side=OrderSide.SELL,
                         size=self._position_size,
+                        timestamp=candle.timestamp,
                     )
                 )
 
