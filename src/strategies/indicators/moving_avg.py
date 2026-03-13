@@ -35,3 +35,40 @@ class SimpleMovingAverage:
             self._sum -= oldest
 
         return self.value
+
+
+class ExponentialMovingAverage:
+    """
+    A lightweight, iterative Exponential Moving Average (EMA) indicator.
+    Calculates efficiently as new candles stream in.
+    """
+
+    def __init__(self, period: int):
+        if period < 1:
+            raise ValueError("Period must be at least 1")
+        self.period = period
+        self._value: float | None = None
+        self._alpha = 2.0 / (period + 1.0)
+        self._count = 0
+
+    @property
+    def value(self) -> float | None:
+        """Returns the current EMA value, or None if the period isn't reached yet."""
+        if self._count < self.period:
+            return None
+        return self._value
+
+    @property
+    def is_ready(self) -> bool:
+        """Returns True if the indicator has enough data points to output a value."""
+        return self._count >= self.period
+
+    def update(self, price: float) -> float | None:
+        """Adds a new price point to the EMA calculation."""
+        self._count += 1
+        if self._value is None:
+            self._value = price
+        else:
+            self._value = self._alpha * price + (1.0 - self._alpha) * self._value
+
+        return self.value

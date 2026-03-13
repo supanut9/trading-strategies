@@ -9,6 +9,7 @@ from .models import (
     PortfolioSnapshot,
 )
 from .ml.ml_strategy import MLStrategy
+from .ensemble import EnsembleStrategy
 
 __all__ = [
     "AbstractStrategy",
@@ -20,4 +21,5 @@ __all__ = [
     "Position",
     "PortfolioSnapshot",
     "MLStrategy",
+    "EnsembleStrategy",
 ]
